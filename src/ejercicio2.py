@@ -1,4 +1,3 @@
-from datos import playlist
 from datetime import timedelta
 
 '''
@@ -21,7 +20,7 @@ def duracion_playlist():
     return response
 '''
 
-def duracion_playlist():
+def duracion_playlist(playlist):
     total = timedelta()
     for x in playlist:
         minutos, segundos = map(int, x['duration'].split(':'))
@@ -58,7 +57,7 @@ def parse_duration(duration):
     minutos, segundos = map(int, duration.split(':'))
     return timedelta(minutes=minutos, seconds=segundos)
 
-def filter_playlist(filter='max'):
+def filter_playlist(playlist, filter='max'):
     if filter == 'max':
         song = max( playlist, key=lambda song: parse_duration(song['duration']))
         return f'Canción más larga: "{song['title']}" "{song['duration']}"'
